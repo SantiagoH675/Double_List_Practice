@@ -73,4 +73,35 @@ public class DoubleLinkedList<T>
         }
         return output.Substring(0, output.Length - 5);
     }
+
+    public void Remove(T data)
+    {
+        var current = _head;
+        while (current != null)
+        {
+            if (current.Data!.Equals(data))
+            {
+                if (current.Prev != null)
+                {
+                    current.Prev.Next = current.Next;
+                }
+                else
+                {
+                    _head = current.Next;
+                }
+
+                if (current.Next != null)
+                {
+                    current.Next.Prev = current.Prev;
+                }
+                else
+                {
+                    _tail = current.Prev;
+                }
+
+                break;
+            }
+            current = current.Next;
+        }
+    }
 }

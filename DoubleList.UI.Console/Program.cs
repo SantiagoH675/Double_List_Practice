@@ -1,5 +1,4 @@
 ﻿using Double_List;
-using System.ComponentModel.Design;
 
 var list = new DoubleLinkedList<string>();
 var opc = "0";
@@ -9,53 +8,66 @@ do
     opc = Menu();
     switch (opc)
     {
+        case "0":
+            Console.WriteLine("¡Regresa para otra lista con Taran!");
+            break;
+
         case "1":
-            Console.Write("Enter the data to insert at the beginning: ");
-            var dataAtBeginning = Console.ReadLine();
-            if (dataAtBeginning != null)
-            {
-                list.InsertAtBeginning(dataAtBeginning);
-            }
+            Console.WriteLine("Ingresa el dato: ");
+            list.InsertOrdered(Console.ReadLine()!);
             break;
 
         case "2":
-            Console.Write("Enter the data to insert at the end: ");
-            var dataAtEnd = Console.ReadLine();
-            if (dataAtEnd != null)
-            {
-                list.InsertAtEnd(dataAtEnd);
-            }
-            break;
-
-        case "3":
             Console.WriteLine(list.GetForward());
             break;
 
-        case "4":
+        case "3":
             Console.WriteLine(list.GetBackward());
             break;
 
+        case "4":
+            list.InvertOrder();
+            Console.WriteLine("La lista ha sido invertida (forma descendente).");
+            break;
+
         case "5":
-            Console.WriteLine("Enter the data to remove: ");
-            var remove = Console.ReadLine();
-            if (remove != null)
-            {
-                list.Remove(remove);
-                Console.WriteLine("Item removed");
-            }
+            Console.WriteLine("Entre el dato a buscar: ");
+            list.Contains(Console.ReadLine()!);
+            break;
+
+        case "6":
+            Console.WriteLine("Ingrese ocurrencia: ");
+            var dataRemove = Console.ReadLine();
+            list.Remove(dataRemove!);
+            Console.WriteLine("Ocurrencia eliminada (si existía).");
+            break;
+
+        case "7":
+            Console.WriteLine("Ingrese ocurrencias a eliminar: ");
+            var dataRemoveAll = Console.ReadLine();
+            int eliminated = list.RemoveAll(dataRemoveAll!);
+            if (eliminated > 0)
+                Console.WriteLine("Ocurrencias eliminadas correctamente.");
+            else
+                Console.WriteLine("No se encontraron coincidencias o lista vacía.");
+            break;
+
+        default:
+            Console.WriteLine("Opción inválida");
             break;
     }
-}
-while (opc != "0");
-
+} while (opc != "0");
 string Menu()
 {
-    Console.WriteLine("1. Insert at beginning");
-    Console.WriteLine("2. Insert at end");
-    Console.WriteLine("3. Show list forward");
-    Console.WriteLine("4. show list Backward");
-    Console.WriteLine("5. Remove");
-    Console.WriteLine("0. Exit");
-    Console.Write("Enter your option: ");
-    return Console.ReadLine() ?? "0";
+    Console.WriteLine();
+    Console.WriteLine("1. Adicionar dato.");
+    Console.WriteLine("2. Mostrar hacia adelante.");
+    Console.WriteLine("3. Mostarr hacia atras.");
+    Console.WriteLine("4. Ordenar descendentemente");
+    Console.WriteLine("5. Existe.");
+    Console.WriteLine("6. Eliminar  una ocurrencia.");
+    Console.WriteLine("7. Eliminar todas ocurrencias.");
+    Console.WriteLine("0. Exit.");
+    Console.WriteLine("ENTER YOUR OPTION");
+    return Console.ReadLine()!;
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Double_List;
 
@@ -11,6 +10,8 @@ public class DoubleLinkedList<T>
 {
     private DoubleNode<T>? _head;
     private DoubleNode<T>? _tail;
+    private bool _Descending = false;
+    private bool _Containing = false;
 
     public DoubleLinkedList()
     {
@@ -72,6 +73,112 @@ public class DoubleLinkedList<T>
             current = current.Prev;
         }
         return output.Substring(0, output.Length - 5);
+    }
+
+    public void InsertOrdered(T data)
+    {
+        if (_Descending)
+        {
+            InvertOrder();
+            _Descending = false;
+        }
+        var newNode = new DoubleNode<T>(data);
+        if (_head == null)
+        {
+            _head = _tail = newNode;
+            return;
+        }
+        var cmp = Comparer<T>.Default;
+        if (cmp.Compare(data, _head.Data) < 0)
+        {
+            newNode.Next = _head;
+            _head.Prev = newNode;
+            _head = newNode;
+            return;
+        }
+        var current = _head;
+        while (current.Next != null && cmp.Compare(data, current.Next.Data) >= 0)
+            current = current.Next;
+        newNode.Next = current.Next;
+        newNode.Prev = current;
+        if (current.Next != null)
+            current.Next.Prev = newNode;
+        else
+            _tail = newNode;
+        current.Next = newNode;
+    }
+
+    public void InvertOrder()
+    {
+        var current = _head;
+        while (current != null)
+        {
+            var temp = current.Next;
+            current.Next = current.Prev;
+            current.Prev = temp;
+            current = temp;
+        }
+        var aux = _head;
+        _head = _tail;
+        _tail = aux;
+        _Descending = !_Descending;
+    }
+
+    public bool Contains(T data)
+    {
+        DoubleNode<T>? current = _head;
+        while (current != null)
+        {
+            if (current.Data!.Equals(data))
+            {
+                Console.WriteLine("El elemento esta.");
+                return true;
+            }
+            current = current.Next;
+            _Containing = !_Containing;
+        }
+        Console.WriteLine("El elemento no está.");
+        return false;
+    }
+
+    public int RemoveAll(T data)
+    {
+        if (_head == null)
+            return 0;
+        int contRem = 0;
+        var actual = _head;
+
+        while (actual != null)
+        {
+            var next = actual.Next;
+
+            if (actual.Data!.Equals(data))
+            {
+                if (actual.Prev != null)
+                {
+                    actual.Prev.Next = actual.Next;
+                }
+                else
+                {
+                    _head = actual.Next;
+                }
+                if (actual.Next != null)
+                {
+                    actual.Next.Prev = actual.Prev;
+                }
+                else
+                {
+                    _tail = actual.Prev;
+                }
+                actual.Next = null;
+                actual.Prev = null;
+                contRem++;
+            }
+            actual = next;
+        }
+        if (_head == null)
+            _tail = null;
+        return contRem;
     }
 
     public void Remove(T data)

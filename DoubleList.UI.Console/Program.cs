@@ -69,7 +69,7 @@ do
 string Menu()
 {
     Console.WriteLine();
-    Console.WriteLine("1. Adicionar dato.");
+    Console.WriteLine("1. Adicionar.");
     Console.WriteLine("2. Mostrar hacia adelante.");
     Console.WriteLine("3. Mostarr hacia atras.");
     Console.WriteLine("4. Ordenar descendentemente");

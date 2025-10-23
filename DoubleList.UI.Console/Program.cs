@@ -31,18 +31,27 @@ do
             break;
 
         case "5":
+            Console.WriteLine("Moda(s):");
+            list.ShowModes();
+            break;
+
+        case "6":
+            list.ShowGraph();
+            break;
+
+        case "7":
             Console.WriteLine("Entre el dato a buscar: ");
             list.Contains(Console.ReadLine()!);
             break;
 
-        case "6":
+        case "8":
             Console.WriteLine("Ingrese ocurrencia: ");
             var dataRemove = Console.ReadLine();
             list.Remove(dataRemove!);
-            Console.WriteLine("Ocurrencia eliminada (si existía).");
+            Console.WriteLine("Ocurrencia eliminada.");
             break;
 
-        case "7":
+        case "9":
             Console.WriteLine("Ingrese ocurrencias a eliminar: ");
             var dataRemoveAll = Console.ReadLine();
             int eliminated = list.RemoveAll(dataRemoveAll!);
@@ -50,15 +59,6 @@ do
                 Console.WriteLine("Ocurrencias eliminadas correctamente.");
             else
                 Console.WriteLine("No se encontraron coincidencias o lista vacía.");
-            break;
-
-        case "8":
-            Console.WriteLine("Moda(s):");
-            list.ShowModes();
-            break;
-
-        case "9":
-            list.ShowGraph();
             break;
 
         default:
@@ -73,11 +73,11 @@ string Menu()
     Console.WriteLine("2. Mostrar hacia adelante.");
     Console.WriteLine("3. Mostarr hacia atras.");
     Console.WriteLine("4. Ordenar descendentemente");
-    Console.WriteLine("5. Existe.");
-    Console.WriteLine("6. Eliminar  una ocurrencia.");
-    Console.WriteLine("7. Eliminar todas ocurrencias.");
-    Console.WriteLine("8. Mostrar la(s) moda(s).");
-    Console.WriteLine("9. Mostrar gráfico.");
+    Console.WriteLine("5. Mostrar la(s) moda(s).");
+    Console.WriteLine("6. Mostrar gráfico.");
+    Console.WriteLine("7. Existe.");
+    Console.WriteLine("8. Eliminar  una ocurrencia.");
+    Console.WriteLine("9. Eliminar todas ocurrencias.");
     Console.WriteLine("0. Exit.");
     Console.WriteLine("ENTER YOUR OPTION");
     return Console.ReadLine()!;

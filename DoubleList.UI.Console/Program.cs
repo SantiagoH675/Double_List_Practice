@@ -9,7 +9,7 @@ do
     switch (opc)
     {
         case "0":
-            Console.WriteLine("¡Regresa para otra lista con Taran!");
+            Console.WriteLine("¡Regresa para otra lista.");
             break;
 
         case "1":
@@ -57,6 +57,10 @@ do
             list.ShowModes();
             break;
 
+        case "9":
+            list.ShowGraph();
+            break;
+
         default:
             Console.WriteLine("Opción inválida");
             break;
@@ -73,6 +77,7 @@ string Menu()
     Console.WriteLine("6. Eliminar  una ocurrencia.");
     Console.WriteLine("7. Eliminar todas ocurrencias.");
     Console.WriteLine("8. Mostrar la(s) moda(s).");
+    Console.WriteLine("9. Mostrar gráfico.");
     Console.WriteLine("0. Exit.");
     Console.WriteLine("ENTER YOUR OPTION");
     return Console.ReadLine()!;

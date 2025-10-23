@@ -232,4 +232,20 @@ public class DoubleLinkedList<T>
             if (pair.Value == maximum)
                 Console.WriteLine($"Moda: {pair.Key} (ocurre {pair.Value} veces)");
     }
+
+    public void ShowGraph()
+    {
+        var counts = new Dictionary<T, int>();
+        var current = _head;
+        while (current != null)
+        {
+            if (counts.TryGetValue(current.Data!, out var c))
+                counts[current.Data!] = c + 1;
+            else
+                counts[current.Data!] = 1;
+            current = current.Next;
+        }
+        foreach (var pair in counts)
+            Console.WriteLine($"{pair.Key}: {new string('*', pair.Value)}");
+    }
 }

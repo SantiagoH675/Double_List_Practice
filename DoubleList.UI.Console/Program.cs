@@ -52,6 +52,11 @@ do
                 Console.WriteLine("No se encontraron coincidencias o lista vacía.");
             break;
 
+        case "8":
+            Console.WriteLine("Moda(s):");
+            list.ShowModes();
+            break;
+
         default:
             Console.WriteLine("Opción inválida");
             break;
@@ -67,6 +72,7 @@ string Menu()
     Console.WriteLine("5. Existe.");
     Console.WriteLine("6. Eliminar  una ocurrencia.");
     Console.WriteLine("7. Eliminar todas ocurrencias.");
+    Console.WriteLine("8. Mostrar la(s) moda(s).");
     Console.WriteLine("0. Exit.");
     Console.WriteLine("ENTER YOUR OPTION");
     return Console.ReadLine()!;

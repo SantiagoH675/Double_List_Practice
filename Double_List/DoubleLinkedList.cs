@@ -211,4 +211,25 @@ public class DoubleLinkedList<T>
             current = current.Next;
         }
     }
+
+    public void ShowModes()
+    {
+        var counts = new Dictionary<T, int>();
+        var current = _head;
+
+        while (current != null)
+        {
+            if (counts.TryGetValue(current.Data!, out var c))
+                counts[current.Data!] = c + 1;
+            else
+                counts[current.Data!] = 1;
+
+            current = current.Next;
+        }
+        int maximum = counts.Values.Max();
+
+        foreach (var pair in counts)
+            if (pair.Value == maximum)
+                Console.WriteLine($"Moda: {pair.Key} (ocurre {pair.Value} veces)");
+    }
 }

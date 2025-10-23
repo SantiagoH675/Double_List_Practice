@@ -58,7 +58,7 @@ do
             if (eliminated > 0)
                 Console.WriteLine("Ocurrencias eliminadas correctamente.");
             else
-                Console.WriteLine("No se encontraron coincidencias o lista vacía.");
+                Console.WriteLine("No se encontraron coincidencias.");
             break;
 
         default:
